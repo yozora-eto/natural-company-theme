@@ -1,0 +1,121 @@
+@use "../../foundation/variable" as v;
+@use "../../foundation/mixin" as m;
+
+/*
+一覧ページネーション
+_________________________________________*/
+.c-pagination {
+    margin: 3rem 0;
+    @include m.baseflex(false, false, center, false, 5px);
+
+    &__prev,
+    &__next,
+    &__first,
+    &__last {
+        @include m.baseflex(false, false, center, center, false);
+        border-radius: 5px;
+        color: var(--eto-textcolor);
+        padding-left: 10px;
+        padding-right: 10px;
+
+        @include m.mq(pc) {
+            font-size: 1.2rem;
+        }
+
+        &:hover {
+            background: var(--eto-backcolor);
+            color: var(--eto-link-textcolor);
+        }
+    }
+
+    &__pager {
+        @include m.baseflex(false, false, center, center, false);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        color: var(--eto-textcolor);
+
+        @include m.mq(pc) {
+            width: 45px;
+            height: 45px;
+            font-size: 1.1rem;
+        }
+
+        &--link {
+            &:hover {
+                background: var(--eto-backcolor);
+                color: var(--eto-link-textcolor);
+            }
+        }
+
+        &--current {
+            background: var(--eto-backcolor);
+            color: var(--eto-link-textcolor);
+        }
+    }
+}
+
+
+/*
+記事ページネーション
+_________________________________________*/
+
+.c-pagination {
+
+    &__onprev,
+    &__onnext {
+        margin: 0;
+
+        a {
+            display: block;
+            padding: 1rem;
+
+            &:hover {
+                background: var(--eto-backcolor);
+                color: var(--eto-link-textcolor);
+            }
+        }
+
+        @include m.mq(tab) {
+            flex: 1;
+        }
+    }
+
+    &__returnblog {
+        a {
+            display: block;
+            padding: 1rem;
+
+            &:hover {
+                background: var(--eto-backcolor);
+                color: var(--eto-link-textcolor);
+            }
+        }
+    }
+
+    &__noprev,
+    &__nonext {
+        display: block;
+        padding: 1rem;
+        margin: 0;
+        color: #ccc;
+
+        @include m.mq(tab) {
+            flex: 1;
+        }
+    }
+
+    &__returnblog {
+        margin: 0;
+        text-align: center;
+
+        @include m.mq(tab) {
+            flex: 1;
+        }
+    }
+
+    &__onnext,
+    &__nonext {
+        text-align: end;
+    }
+}

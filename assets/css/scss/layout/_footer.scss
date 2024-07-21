@@ -1,0 +1,259 @@
+@use "../foundation/variable" as v;
+@use "../foundation/mixin" as m;
+
+/*
+contact
+_________________________________________*/
+.l-contact {
+    background-color: var(--eto-backcolor-secondary);
+    padding: 50px 15px;
+    text-align: center;
+
+    @include m.mq(tab) {
+        padding: 50px 15px;
+    }
+
+    @include m.mq(pc) {
+        @include m.baseflex(false, false, space-between, center, false);
+        padding-left: v.$padding-center;
+        padding-right: v.$padding-center;
+        padding-top: 90px;
+        padding-bottom: 90px;
+        text-align: start;
+    }
+
+    &__headline {
+        position: relative;
+        display: inline-block;
+
+        @include m.mq(pc) {
+            display: block;
+        }
+    }
+
+    &__subtext {
+        display: inline-block;
+        position: absolute;
+        font-family: v.$f-licorice;
+        color: var(--eto-back-subtextcolor);
+        font-size: 3rem;
+        top: -33px;
+        left: -15px;
+        transform: rotate(-10deg);
+        z-index: 0;
+
+        @include m.mq(pc) {
+            font-size: 3.75rem;
+            top: -35px;
+            left: -40px;
+        }
+    }
+
+    &__h2 {
+        position: relative;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--eto-back-textcolor);
+        z-index: 1;
+
+        @include m.mq(pc) {
+            font-size: 2.2rem;
+            text-align: start;
+        }
+    }
+
+    &__description {
+        color: var(--eto-back-textcolor);
+        margin-top: 20px;
+        margin-bottom: 0;
+
+        @include m.mq(pc) {
+            margin-top: 25px;
+            text-align: start;
+        }
+    }
+
+    &__link.c-button {
+        color: var(--eto-link-hover-textcolor);
+        border-color: var(--eto-link-hover-textcolor);
+        font-size: 1.2rem;
+        width: 100%;
+        text-align: center;
+        margin-top: 25px;
+        box-sizing: border-box;
+
+        &:hover {
+            background-color: var(--eto-link-hover-textcolor);
+            color: var(--eto-link-textcolor);
+        }
+
+        @include m.mq(tab) {
+            width: 300px;
+        }
+
+        @include m.mq(pc) {
+            margin-top: 0px;
+            font-size: 1.5rem;
+        }
+    }
+}
+
+
+/*
+footer
+_________________________________________*/
+.l-footer {
+    background-color: var(--eto-backcolor-dark);
+
+    &__contents {
+        padding: 50px 15px;
+        @include m.baseflex(false, false, false, center, 25px);
+        flex-direction: column;
+
+        @include m.mq(pc) {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-left: v.$padding-center;
+            padding-right: v.$padding-center;
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+    }
+
+    &__logo {
+        max-width: 200px;
+
+        @include m.mq(tab) {
+            max-width: 250px;
+        }
+
+        @include m.mq(pc) {
+            max-width: 315px;
+        }
+    }
+
+    &__menu {
+        @include m.baseflex(false, false, false, center, 24px);
+        flex-direction: column;
+
+        @include m.mq(tab) {
+            flex-direction: row;
+        }
+
+        a {
+            font-family: v.$f-jost;
+            font-size: 1.2rem;
+            color: var(--eto-back-textcolor);
+
+            &:hover {
+                color: var(--eto-link-textcolor);
+            }
+
+            @include m.mq(tab) {
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    &__copyarea {
+        @include m.baseflex(false, false, center, center, 5px);
+        flex-direction: column;
+        padding-bottom: 15px;
+
+        @include m.mq(tab) {
+            flex-direction: row;
+        }
+    }
+
+    &__policy {
+        display: block;
+        text-align: center;
+        font-size: 0.8rem;
+        margin-bottom: 0;
+        color: var(--eto-back-textcolor);
+
+        &:hover {
+            color: var(--eto-link-textcolor);
+        }
+    }
+
+    &__separate {
+        display: none;
+        font-size: 0.8rem;
+        color: var(--eto-back-textcolor);
+
+        @include m.mq(tab) {
+            display: block;
+        }
+    }
+
+    &__copyright {
+        text-align: center;
+        font-size: 0.8rem;
+        margin-bottom: 0;
+        color: var(--eto-back-textcolor);
+    }
+
+    &__topscroll {
+        position: fixed;
+        @include m.baseflex(false, false, center, center, false);
+        bottom: 30px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        color: var(--eto-back-textcolor);
+        background-color: var(--eto-backcolor-dark);
+        font-size: 20px;
+        opacity: 0;
+        transform: translateY(100px);
+
+        @include m.mq(tab) {
+            bottom: 20px;
+        }
+    }
+
+    &__junplink {
+        @include m.baseflex(false, false, center, center, false);
+        color: var(--eto-back-textcolor);
+    }
+
+}
+
+
+/*　上に上がる動き　*/
+
+.js-upmove {
+    animation: UpAnime 0.5s forwards;
+}
+
+@keyframes UpAnime {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*　下に下がる動き　*/
+
+.js-downmove {
+    animation: DownAnime 0.5s forwards;
+}
+
+@keyframes DownAnime {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(100px);
+    }
+}

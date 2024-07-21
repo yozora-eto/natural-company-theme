@@ -1,0 +1,151 @@
+@use "../foundation/variable" as v;
+@use "../foundation/mixin" as m;
+
+/*
+maincontainer制御
+_________________________________________*/
+.l-maincontainer {
+    position: relative;
+    margin-top: 71px;
+
+    @include m.mq(pc) {
+        margin-top: 104px;
+    }
+}
+
+.l-maincontents {
+    width: 100%;
+    margin: 50px auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    @include m.mq(pc) {
+        width: v.$content-width;
+        padding-left: 0;
+        padding-right: 0;
+        margin: 80px auto;
+    }
+}
+
+
+.l-post {
+    padding-top: 50px;
+
+    @include m.mq(pc) {
+        padding-top: 80px;
+    }
+}
+
+
+/*
+内部ページheader
+_________________________________________*/
+.l-headline {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 80px;
+    margin-right: auto;
+    margin-left: auto;
+
+
+    @include m.mq(pc) {
+        width: v.$content-width;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 100px;
+    }
+
+    &__container {
+        position: relative;
+    }
+
+    &__subtext {
+        display: inline-block;
+        position: absolute;
+        font-family: v.$f-licorice;
+        color: var(--eto-sub-textcolor);
+        font-size: 2.5rem;
+        top: -33px;
+        left: 5px;
+        transform: rotate(-10deg);
+        z-index: 0;
+
+        @include m.mq(tab) {
+            left: -10px;
+        }
+
+        @include m.mq(pc) {
+            font-size: 3.75rem;
+            top: -40px;
+            left: -20px;
+        }
+    }
+
+    &__title {
+        position: relative;
+        font-size: 1.5rem;
+        font-weight: 600;
+        z-index: 1;
+        padding-left: 1rem;
+
+        @include m.mq(pc) {
+            font-size: 2.2rem;
+        }
+    }
+}
+
+.l-pageheadline {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 80px;
+    margin-right: auto;
+    margin-left: auto;
+
+
+    @include m.mq(pc) {
+        width: v.$main-width;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 100px;
+    }
+
+    &__container {
+        position: relative;
+    }
+
+    &__subtext {
+        display: inline-block;
+        position: absolute;
+        font-family: v.$f-licorice;
+        color: var(--eto-sub-textcolor);
+        font-size: 2.5rem;
+        top: -33px;
+        left: 5px;
+        transform: rotate(-10deg);
+        z-index: 0;
+
+        @include m.mq(tab) {
+            left: -10px;
+        }
+
+        @include m.mq(pc) {
+            font-size: 3.75rem;
+            top: -40px;
+            left: -20px;
+        }
+    }
+
+    &__title {
+        position: relative;
+        font-size: 1.5rem;
+        font-weight: 600;
+        z-index: 1;
+        padding-left: 1rem;
+
+        @include m.mq(pc) {
+            font-size: 2.2rem;
+        }
+    }
+}

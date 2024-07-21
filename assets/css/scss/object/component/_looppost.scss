@@ -1,0 +1,91 @@
+@use "../../foundation/variable" as v;
+@use "../../foundation/mixin" as m;
+
+/*
+ブログ・アーカイブ 記事ループ
+_________________________________________*/
+.c-categoryhead {
+    font-size: 1.2rem;
+    margin-top: 1.2rem;
+    padding-left: 1rem;
+}
+
+.c-loop {
+    &__box {
+        @include m.basegrid(false, false, false, center, false);
+    }
+}
+
+.c-postloop {
+    display: block;
+    border-bottom: 1px solid var(--eto-bordercolor);
+
+    @include m.mq(tab) {
+        width: 100%;
+    }
+
+    &:first-child {
+        border-top: 1px solid var(--eto-bordercolor);
+    }
+
+    &__item {
+        @include m.baseflex(false, false, false, false, 1rem);
+        flex-direction: column;
+        padding-top: 1.25rem;
+        padding-bottom: 1.25rem;
+
+        @include m.mq(tab) {
+            flex-direction: row;
+            gap: 1.5rem;
+        }
+    }
+
+    &__imglink {
+        position: relative;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    &__category {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        background-color: var(--eto-main-dark-07);
+        padding: 5px 10px;
+        border: 1px solid var(--eto-white-08);
+        font-size: 14px;
+        color: var(--eto-back-textcolor);
+    }
+
+    &__img {
+        width: auto;
+        max-width: 320px;
+        max-height: 240px;
+        aspect-ratio: 4 / 3;
+    }
+
+    &__contentbox {
+        @include m.mq(tab) {
+            @include m.basegrid(space-between, false, false, false, false);
+            flex-grow: 1;
+        }
+    }
+
+    &__databox {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    &__posttitle {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    &__morebtn {
+        width: 100%;
+        text-align: end;
+    }
+
+}

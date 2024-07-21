@@ -1,0 +1,200 @@
+@use "../foundation/variable" as v;
+@use "../foundation/mixin" as m;
+
+/*
+サイドバー
+_________________________________________*/
+.l-sidebar {
+    @include m.mq(pc) {
+        width: 320px;
+        min-width: 320px;
+    }
+
+    section.widget_block:nth-child(n+2) {
+        margin: 2.5rem 0;
+    }
+
+    h2 {
+        font-size: 1rem;
+        position: relative;
+        margin-bottom: 2rem;
+        padding: 10px;
+        background-color: var(--eto-backcolor-secondary);
+        color: var(--eto-back-textcolor);
+        font-weight: 500;
+
+        &::after {
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            display: block;
+            content: "";
+            width: 100%;
+            height: 1px;
+            background-color: var(--eto-backcolor-secondary);
+        }
+    }
+}
+
+/*
+サイドバー ブロック
+_________________________________________*/
+.l-sidebar {
+    .wp-block-search {
+        label {
+            display: none;
+        }
+
+        .wp-block-search__inside-wrapper {
+            padding: 5px;
+            border-bottom: 1px solid var(--eto-main-lightcolor);
+
+        }
+
+        input.wp-block-search__input {
+            border: none;
+        }
+
+        .wp-block-search__button {
+            background-color: var(--eto-main-lightcolor);
+            border: none;
+            border-radius: 5px;
+            color: var(--eto-main-color);
+        }
+    }
+
+    .wp-block-categories-list {
+        .cat-item {
+            a {
+                display: block;
+                padding: 10px;
+                border-bottom: 1px dashed var(--eto-main-lightcolor);
+
+                &:hover {
+                    color: var(--eto-main-color);
+                    background-color: var(--eto-main-light-05);
+                }
+            }
+
+        }
+
+        ul.children {
+            padding-left: 30px;
+
+            .cat-item {
+                list-style: disc;
+
+                &::marker {
+                    color: var(--eto-main-color);
+                }
+
+                a {
+                    border-bottom: none;
+                    padding: 10px 0;
+                }
+            }
+        }
+    }
+
+    .wp-block-archives-list {
+        a {
+            display: block;
+            padding: 10px;
+            border-bottom: 1px dashed var(--eto-main-lightcolor);
+
+            &:hover {
+                color: var(--eto-main-color);
+                background-color: var(--eto-main-light-05);
+            }
+        }
+    }
+
+    .wp-block-archives-dropdown {
+        select {
+            width: 100%;
+            padding: 10px;
+            color: var(--eto-main-color);
+            border-color: var(--eto-main-color);
+            border-radius: 5px;
+        }
+    }
+
+    .wp-block-latest-posts__list {
+        li {
+            padding: 10px;
+            display: grid;
+            gap: 10px;
+            border-bottom: 1px solid var(--eto-bordercolor);
+        }
+
+        .wp-block-latest-posts__featured-image {
+            img {
+                width: auto;
+                max-height: 218px;
+                aspect-ratio: 4 / 3;
+            }
+        }
+
+        .wp-block-latest-posts__post-date {
+            font-size: 13px;
+        }
+    }
+
+    .wp-block-tag-cloud {
+        margin: 0;
+        @include m.baseflex(wrap, false, false, false, 8px);
+
+        .tag-cloud-link {
+            display: inline-block;
+            padding: 5px;
+            font-size: 13px !important;
+            border: 1px solid var(--eto-bordercolor);
+            border-radius: 3px;
+            margin: 0;
+
+            &:hover {
+                color: var(--eto-main-color);
+                background-color: var(--eto-main-light-05);
+            }
+        }
+
+    }
+
+    .wp-block-latest-comments {
+        .wp-block-latest-comments__comment {
+            border-top: 1px solid var(--eto-bordercolor);
+            margin-bottom: 0;
+            padding: 16px 10px;
+
+            &:last-child {
+                border-bottom: 1px solid var(--eto-bordercolor);
+            }
+        }
+
+        .wp-block-latest-comments__comment-excerpt {
+            padding: 10px;
+            background-color: var(--eto-main-light-03);
+
+            p {
+                margin: 0;
+            }
+        }
+
+        .wp-block-latest-comments__comment-meta {
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+
+        .wp-block-latest-comments__comment-link {
+            display: block;
+        }
+
+        .wp-block-latest-comments__comment-date {
+            text-align: end;
+        }
+    }
+}
+
+.has-avatars .wp-block-latest-comments__comment .wp-block-latest-comments__comment-excerpt {
+    margin-left: unset;
+}

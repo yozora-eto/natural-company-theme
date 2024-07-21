@@ -1,0 +1,24 @@
+@use "../../foundation/variable" as v;
+@use "../../foundation/mixin" as m;
+/*
+ボタン
+_________________________________________*/
+.c-button {
+    border: 1px solid var(--eto-btn-bordercolor);
+    padding: 10px 20px;
+    border-radius: 50px;
+
+    &:hover {
+        color: var(--eto-btn-hover-textcolor);
+        background-color: var(--eto-btn-hover-backcolor);
+    }
+
+    @include m.mq(tab) {
+        padding: 15px 20px;
+    }
+
+    @include m.mq(pc) {
+        padding: 15px 50px;
+    }
+}
+

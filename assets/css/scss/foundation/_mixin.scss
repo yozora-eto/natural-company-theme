@@ -1,0 +1,120 @@
+@use "./variable" as v;
+
+$breakpoints: (
+    "tab": "(min-width: 768px)",
+    "pc": "(min-width: 1280px)",
+    "bpc": "(min-width: 1400px)",
+);
+
+@mixin mq($breakpoint) {
+    @media screen and #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
+}
+
+@mixin defaultcolorset() {
+    --eto-textcolor: #{v.$c-base};
+    --eto-sub-textcolor: rgba(#{v.$c-main-channel}, 0.8);
+    --eto-back-textcolor: #{v.$c-white};
+    --eto-back-subtextcolor: rgba(#{v.$c-main-light-channel}, 0.3);
+    --eto-backcolor: #{v.$c-main-light};
+    --eto-backcolor-opacity: rgba(#{v.$c-main-light-channel}, 0.5);
+    --eto-backcolor-secondary: #{v.$c-main};
+    --eto-backcolor-dark: #{v.$c-main-dark};
+    --eto-backcolor-over: rgba(#{v.$c-main-dark-channel}, 0.4);
+    --eto-backcolor-hover: rgba(#{v.$c-main-dark-channel}, 0.6);
+    --eto-bordercolor: #{v.$c-main};
+    --eto-link-textcolor: #{v.$c-main};
+    --eto-link-hover-textcolor: #{v.$c-main-light};
+    --eto-btn-bordercolor: #{v.$c-main};
+    --eto-btn-textcolor: #{v.$c-main};
+    --eto-btn-hover-textcolor: #{v.$c-white};
+    --eto-btn-hover-backcolor: #{v.$c-main};
+}
+
+@mixin palettecolorset() {
+    --eto-main-color:#{v.$c-main};
+    --eto-main-03:rgba(#{v.$c-main-channel}, 0.3);
+    --eto-main-05:rgba(#{v.$c-main-channel}, 0.5);
+    --eto-main-07:rgba(#{v.$c-main-channel}, 0.7);
+    --eto-main-lightcolor:#{v.$c-main-light};
+    --eto-main-light-03:rgba(#{v.$c-main-light-channel}, 0.3);
+    --eto-main-light-05:rgba(#{v.$c-main-light-channel}, 0.5);
+    --eto-main-light-07:rgba(#{v.$c-main-light-channel}, 0.7);
+    --eto-main-darkcolor:#{v.$c-main-dark};
+    --eto-main-dark-03:rgba(#{v.$c-main-dark-channel}, 0.3);
+    --eto-main-dark-05:rgba(#{v.$c-main-dark-channel}, 0.5);
+    --eto-main-dark-07:rgba(#{v.$c-main-dark-channel}, 0.7);
+    --eto-white: rgb(255 255 255);
+    --eto-white-03: rgba(255, 255, 255, 0.3);
+    --eto-white-05: rgba(255, 255, 255, 0.5);
+    --eto-white-08: rgba(255, 255, 255, 0.8);
+}
+
+@mixin baseflex($wrap, $align-content, $justify-content, $align-items, $gap) {
+    display: flex;
+
+    @if $wrap !=false {
+        flex-wrap: $wrap;
+    }
+
+    @if $align-content !=false {
+        align-content: $align-content;
+    }
+
+    @if $justify-content !=false {
+        justify-content: $justify-content;
+    }
+
+    @if $align-items !=false {
+        align-items: $align-items;
+    }
+
+    @if $gap !=false {
+        gap: $gap;
+    }
+}
+
+@mixin basegrid($align-content, $justify-content, $align-items, $justify-items, $gap) {
+    display: grid;
+
+    @if $align-content !=false {
+        align-content: $align-content;
+    }
+
+    @if $justify-content !=false {
+        justify-content: $justify-content;
+    }
+
+    @if $align-items !=false {
+        align-items: $align-items;
+    }
+
+    @if $justify-items !=false {
+        justify-items: $justify-items;
+    }
+
+    @if $gap !=false {
+        gap: $gap;
+    }
+}
+
+@mixin lineset($l-position, $l-size, $l-color) {
+    @if $l-position ==false {
+        border: $l-size solid $l-color;
+    }
+
+    @else {
+        border#{$l-position}: $l-size solid $l-color;
+    }
+}
+
+@mixin lineset-b($l-position, $l-line, $l-size, $l-color) {
+    @if $l-position ==false {
+        border: $l-size $l-line $l-color;
+    }
+
+    @else {
+        border#{$l-position}: $l-size $l-line $l-color;
+    }
+}

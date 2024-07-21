@@ -1,0 +1,154 @@
+@use "../../foundation/variable" as v;
+@use "../../foundation/mixin" as m;
+
+/*
+serviceページ
+_________________________________________*/
+
+.p-service {
+    width: 100%;
+    margin: 50px auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    @include m.mq(pc) {
+        width: v.$main-width;
+        padding-left: 0;
+        padding-right: 0;
+        margin: 80px auto;
+    }
+
+    &__maincontainer {
+        margin-top: 80px;
+    }
+
+    &__loopbox {
+        @include m.baseflex(false, false, false, false, 80px);
+        flex-direction: column;
+
+        @include m.mq(tab) {
+            gap: 100px;
+        }
+    }
+
+    &__item {
+        @include m.baseflex(false, false, false, false, 30px);
+        flex-direction: column;
+
+        @include m.mq(tab) {
+            flex-direction: row;
+        }
+    }
+
+    &__imgbox {
+        @include m.mq(tab) {
+            @include m.basegrid(false, false, center, false, false);
+            min-width: 40%;
+            width: 40%;
+        }
+
+        @include m.mq(pc) {
+            width: auto;
+            min-width: unset;
+        }
+    }
+
+    &__img {
+        width: 100%;
+        max-width: 400px;
+        aspect-ratio: 1 / 1;
+
+
+        @include m.mq(pc) {
+            width: 400px;
+            height: 400px;
+        }
+
+    }
+
+    &__itembox {
+        @include m.basegrid(false, false, false, end, 1rem);
+
+        @include m.mq(tab) {
+            flex-grow: 1;
+            align-content: space-between;
+            padding-top: 2rem;
+            padding-bottom: 1rem;
+        }
+    }
+
+    &__datebox {
+        width: 100%;
+    }
+
+    &__title {
+        color: var(--eto-main-color);
+        border-bottom: 1px solid var(--eto-bordercolor);
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    &__noitem {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0;
+    }
+
+}
+
+/*
+service　Archive一覧
+_________________________________________*/
+.p-servicearchive {
+    width: 100%;
+    margin: 50px auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    @include m.mq(pc) {
+        width: v.$main-width;
+        padding-left: 0;
+        padding-right: 0;
+        margin: 80px auto;
+    }
+}
+
+
+.p-serviceingle {
+    width: 100%;
+    margin: 50px auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    @include m.mq(pc) {
+        width: v.$main-width;
+        padding-left: 0;
+        padding-right: 0;
+        margin: 80px auto;
+    }
+
+    &__btn {
+        margin-top: 50px;
+
+        @include m.mq(pc) {
+            margin-top: 50px;
+        }
+    }
+
+    &__return {
+        margin: 0 auto;
+        text-align: center;
+        max-width: 300px;
+
+        a {
+            display: block;
+            padding: 1rem;
+
+            &:hover {
+                background: var(--eto-backcolor);
+                color: var(--eto-link-textcolor);
+            }
+        }
+    }
+
+}

@@ -1,0 +1,205 @@
+@use "../../foundation/variable" as v;
+@use "../../foundation/mixin" as m;
+
+/*
+実績一覧
+_________________________________________*/
+
+.p-workarchive {
+    width: 100%;
+    margin: 50px auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    @include m.mq(pc) {
+        width: v.$main-width;
+        padding-left: 0;
+        padding-right: 0;
+        margin: 80px auto;
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--eto-bordercolor);
+
+        &:first-child {
+            border-top: 1px solid var(--eto-bordercolor);
+        }
+
+        @include m.mq(tab) {
+            flex-direction: row;
+            gap: 0px;
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+    }
+
+    &__imgbox {
+        position: relative;
+    }
+
+    &__category {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        background-color: var(--eto-main-dark-07);
+        padding: 5px 10px;
+        border: 1px solid var(--eto-white-08);
+        font-size: 14px;
+        color: var(--eto-back-textcolor);
+        margin-bottom: 0;
+    }
+
+    &__img {
+        max-width: 100%;
+        max-height: 280px;
+        aspect-ratio: 3 / 2;
+
+        @include m.mq(tab) {
+            max-width: 400px;
+            max-height: 280px;
+        }
+
+        @include m.mq(pc) {
+            max-width: unset;
+            max-height: unset;
+            width: 480px;
+            height: 320px;
+        }
+    }
+
+    &__itembox {
+        @include m.basegrid(false, false, false, end, false);
+
+        @include m.mq(tab) {
+            flex-grow: 1;
+            align-content: space-between;
+            justify-items: start;
+        }
+    }
+
+    &__datebox {
+        width: 100%;
+    }
+
+    &__title {
+        font-size: 1.1rem;
+        margin-top: 10px;
+
+        @include m.mq(pc) {
+            font-size: 1.3rem;
+        }
+    }
+
+    &__noitem {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0;
+    }
+}
+
+/*
+実績詳細
+_________________________________________*/
+.p-worksingle {
+    width: 100%;
+    margin: 50px auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    @include m.mq(pc) {
+        width: v.$main-width;
+        padding-left: 0;
+        padding-right: 0;
+        margin: 80px auto;
+    }
+
+    &__header {
+        border-top: 1px solid var(--eto-bordercolor);
+        border-bottom: 1px solid var(--eto-bordercolor);
+        padding-top: 30px;
+        padding-bottom: 30px;
+        @include m.baseflex(false, false, false, false, 30px);
+        flex-direction: column;
+
+        @include m.mq(pc) {
+            flex-direction: row;
+        }
+    }
+
+    &__headlines {
+        @include m.mq(pc) {
+            flex-grow: 1;
+        }
+    }
+
+    &__title {
+        font-size: 1.25rem;
+        padding-bottom: 30px;
+        border-bottom: 1px solid var(--eto-bordercolor);
+
+        @include m.mq(pc) {
+            font-size: 1.4rem;
+        }
+    }
+
+    &__metabox {
+        @include m.baseflex(false, false, false, center, 1rem);
+        margin-top: 20px;
+    }
+
+    &__category,
+    &__time {
+        margin-bottom: 0px;
+    }
+
+    &__categorylink {
+        display: inline-block;
+        padding: 5px 20px;
+        color: var(--eto-back-textcolor);
+        background-color: var(--eto-backcolor-dark);
+    }
+
+    &__tagarea {
+        margin-top: 20px;
+    }
+
+    &__description {
+        font-size: 0.9rem;
+        margin-top: 20px;
+    }
+
+    &__thumbnail {
+        max-width: 510px;
+        aspect-ratio: 3 / 2;
+
+        @include m.mq(tab) {
+            width: 510px;
+        }
+    }
+
+    &__article {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--eto-bordercolor);
+
+        @include m.mq(pc) {
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+    }
+
+    &__btn {
+        margin: 2rem 0;
+        @include m.baseflex(false, false, false, false, 5px);
+        flex-direction: column;
+
+        @include m.mq(tab) {
+            flex-direction: row;
+        }
+    }
+}

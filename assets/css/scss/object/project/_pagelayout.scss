@@ -1,0 +1,171 @@
+@use "../../foundation/variable" as v;
+@use "../../foundation/mixin" as m;
+
+/*
+ページレイアウト
+_________________________________________*/
+
+.p-pagelayout {
+    width: 100%;
+    margin: 50px auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    @include m.mq(pc) {
+        padding-left: 0;
+        padding-right: 0;
+        margin: 80px auto;
+    }
+
+    &__section {
+        &--noback {
+            margin-top: 80px;
+            margin-bottom: 80px;
+
+            @include m.mq(pc) {
+                margin-top: 90px;
+                margin-bottom: 90px;
+            }
+        }
+
+        &--back {
+            background-color: var(--eto-backcolor);
+            padding-top: 80px;
+            padding-bottom: 80px;
+
+            @include m.mq(pc) {
+                padding-top: 90px;
+                padding-bottom: 90px;
+            }
+        }
+    }
+
+    &__innerbox {
+        width: 100%;
+
+        @include m.mq(pc) {
+            width: v.$main-width;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}
+
+/* ----- 画像センターコンテンツ ----- */
+
+.p-pagelayout-centerimage {
+    &__img {
+        aspect-ratio: 15 / 7;
+    }
+
+    &__mainbox {
+        margin-top: 30px;
+        @include m.basegrid(false, false, false, false, 30px);
+
+        @include m.mq(pc) {
+            margin-top: 50px;
+            justify-items: end;
+        }
+    }
+
+    &__left {
+        width: 100%;
+        text-align: start;
+    }
+
+    &__right {
+        width: 100%;
+
+        @include m.mq(pc) {
+            width: 80%;
+        }
+    }
+}
+
+/* ----- 画像カラムコンテンツ ----- */
+
+.p-pagelayout-imgcolumn {
+    &__columnbox {
+        @include m.baseflex(false, false, center, center, 20px);
+        flex-direction: column;
+
+        @include m.mq(tab) {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        @include m.mq(pc) {
+            gap: 30px;
+        }
+    }
+
+    &__img {
+        aspect-ratio: 1 / 1;
+        max-width: 300px;
+
+        @include m.mq(pc) {
+            max-width: 380px;
+        }
+    }
+
+    &__mainbox {
+        margin-top: 30px;
+        text-align: center;
+        @include m.basegrid(false, false, false, center, 30px);
+    }
+}
+
+/* ----- カラムコンテンツ ----- */
+
+.p-pagelayout-column {
+    @include m.baseflex(false, false, false, center, 20px);
+    flex-direction: column;
+
+    @include m.mq(tab) {
+        flex-direction: row;
+    }
+
+    @include m.mq(pc) {
+        gap: 50px;
+    }
+
+    &__imgbox {
+        position: relative;
+    }
+
+    &__subtext {
+        display: inline-block;
+        position: absolute;
+        font-family: v.$f-licorice;
+        color: var(--eto-sub-textcolor);
+        font-size: 3rem;
+        top: -35px;
+        left: -25px;
+        transform: rotate(-10deg);
+        z-index: 0;
+
+        @include m.mq(pc) {
+            font-size: 3.75rem;
+            top: -45px;
+            left: -45px;
+        }
+    }
+
+    &__img {
+        max-width: 300px;
+        aspect-ratio: 1 / 1;
+
+        @include m.mq(tab) {
+            min-width: 300px;
+        }
+
+        @include m.mq(pc) {
+            width: 380px;
+            max-width: 380px;
+        }
+    }
+
+    &__mainbox {
+        @include m.basegrid(false, false, false, false, 30px);
+    }
+}

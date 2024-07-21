@@ -1,0 +1,423 @@
+@use "../../foundation/variable" as v;
+@use "../../foundation/mixin" as m;
+
+/*
+ブログ・アーカイブ一覧
+_________________________________________*/
+%pageflex {
+    @include m.baseflex(false, false, false, false, 4rem);
+    flex-direction: column;
+
+    @include m.mq(pc) {
+        flex-direction: row;
+        gap: 2.5rem;
+    }
+}
+
+.p-blog {
+    @extend %pageflex;
+
+    &__loopbox {
+        @include m.basegrid(false, false, false, center, false);
+    }
+
+    &__maincontainer {
+        @include m.mq(pc) {
+            flex-grow: 1;
+        }
+    }
+
+    &__no-item {
+        text-align: center;
+
+        @include m.mq(pc) {
+            text-align: start;
+        }
+    }
+}
+
+.p-archive {
+    @extend %pageflex;
+
+    &__maincontainer {
+        @include m.mq(pc) {
+            flex-grow: 1;
+        }
+    }
+}
+
+.p-search {
+    @extend %pageflex;
+
+}
+
+
+/*
+記事
+_________________________________________*/
+.p-post {
+    @extend %pageflex;
+
+    @include m.mq(pc) {
+        flex-direction: row;
+    }
+
+    &__main {
+        @include m.mq(pc) {
+            flex-grow: 1;
+        }
+    }
+
+    &__headlines {
+        position: relative;
+        padding-bottom: 1rem;
+        @include m.lineset(-bottom, 1px, var(--eto-bordercolor));
+    }
+
+    &__subtext {
+        display: inline-block;
+        position: absolute;
+        font-family: v.$f-licorice;
+        color: var(--eto-sub-textcolor);
+        font-size: 2rem;
+        top: -30px;
+        left: -3px;
+        transform: rotate(-10deg);
+        z-index: 0;
+
+        @include m.mq(pc) {
+            font-size: 2.5rem;
+            top: -40px;
+            left: -10px;
+        }
+    }
+
+    &__title {
+        position: relative;
+        font-size: 1.5rem;
+        font-weight: 600;
+        z-index: 1;
+
+        @include m.mq(pc) {
+            font-size: 2rem;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+
+    &__metabox {
+        @include m.baseflex(false, false, false, center, 1rem);
+        margin: 1rem 0;
+    }
+
+    &__category,
+    &__time {
+        margin: 0;
+    }
+
+    &__categorylink {
+        display: inline-block;
+        padding: 5px 20px;
+        color: var(--eto-back-textcolor);
+        background-color: var(--eto-backcolor-dark);
+    }
+
+    &__article {
+        padding-bottom: 20px;
+
+        @include m.mq(pc) {
+            padding-bottom: 30px;
+        }
+    }
+
+    &__thumbnailbox {
+        margin-bottom: 1rem;
+    }
+
+    &__tagarea {
+        @include m.baseflex(wrap, false, false, center, 5px);
+        @include m.lineset(-top, 1px, var(--eto-bordercolor));
+        padding-top: 30px;
+        padding-bottom: 30px;
+
+        a {
+            display: inline-block;
+            padding: 5px 10px;
+            @include m.lineset(false, 1px, var(--eto-bordercolor));
+            border-radius: 3px;
+
+            &:hover {
+                color: var(--eto-link-textcolor);
+                background-color: var(--eto-main-light-05);
+            }
+        }
+    }
+
+    &__snsarea {
+        text-align: center;
+        @include m.lineset(-top, 1px, var(--eto-bordercolor));
+        @include m.lineset(-bottom, 1px, var(--eto-bordercolor));
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    &__snscontainer {
+        position: relative;
+        display: inline-block;
+    }
+
+    &__snssub {
+        display: inline-block;
+        position: absolute;
+        font-family: v.$f-licorice;
+        color: var(--eto-sub-textcolor);
+        font-size: 1.8rem;
+        top: -23px;
+        left: -15px;
+        transform: rotate(-10deg);
+        z-index: 0;
+
+        @include m.mq(pc) {
+            font-size: 2rem;
+            top: -26px;
+            left: -15px;
+        }
+    }
+
+    &__snstext {
+        position: relative;
+        font-weight: 600;
+        z-index: 1;
+        padding-bottom: 1rem;
+
+        @include m.mq(pc) {}
+
+        &::after {
+            display: block;
+            position: absolute;
+            content: "";
+            width: 30px;
+            height: 5px;
+            background-color: var(--eto-backcolor-secondary);
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+        }
+    }
+
+    &__snsbtn {
+        @include m.baseflex(false, false, space-between, center, false);
+        margin-top: 1rem;
+
+        @include m.mq(tab) {
+            justify-content: center;
+            gap: 20px;
+        }
+    }
+
+    &__snslink {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        @include m.basegrid(false, center, center, false, false);
+    }
+
+    &__btn {
+        margin: 2rem 0;
+        flex-direction: column;
+        @include m.baseflex(false, false, false, false, 5px);
+
+        @include m.mq(tab) {
+            flex-direction: row;
+        }
+    }
+
+}
+
+
+/*
+固定ページ
+_________________________________________*/
+.p-page {
+    width: 100%;
+    margin: 50px auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    @include m.mq(pc) {
+        width: v.$main-width;
+        padding-left: 0;
+        padding-right: 0;
+        margin: 80px auto;
+    }
+
+}
+
+/*
+404ページ
+_________________________________________*/
+
+
+/*
+WordPressのブロック
+_________________________________________*/
+.article-block-onarea {
+
+    h2 {
+        position: relative;
+        margin-top: 3rem;
+        margin-bottom: 2rem;
+        padding: 15px 10px;
+        color: var(--eto-main-color);
+        @include m.lineset(-bottom, 3px, var(--eto-bordercolor));
+
+        @include m.mq(pc) {
+            padding: 20px 10px;
+        }
+
+        &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            content: "";
+            width: 150px;
+            height: 1px;
+            background-color: var(--eto-main-color);
+        }
+    }
+
+    h3 {
+        position: relative;
+        margin-top: 3rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        color: var(--eto-main-color);
+
+        &::after {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            display: block;
+            content: "";
+            width: 200px;
+            height: 3px;
+            background-color: var(--eto-main-color);
+        }
+    }
+
+    h4 {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 1rem;
+        color: var(--eto-main-color);
+        @include m.lineset(-left, 3px, var(--eto-bordercolor));
+    }
+
+    h5,
+    h6 {
+        margin-top: 1.75rem;
+        margin-bottom: 1rem;
+        color: var(--eto-main-color);
+    }
+
+    ul {
+        list-style: disc;
+        padding-left: 20px;
+        margin-left: 5px;
+        margin-bottom: 1rem;
+    }
+
+    ol {
+        list-style: auto;
+        padding-left: 20px;
+        margin-left: 5px;
+        margin-bottom: 1rem;
+    }
+
+    li {
+        line-height: 1.8;
+    }
+
+    .wp-block-table {
+        margin-bottom: 1.1rem;
+
+        table {
+            width: unset;
+
+            &.has-fixed-layout {
+                width: 100%;
+            }
+        }
+
+        thead {
+            border-bottom: unset;
+        }
+
+        th {
+            background-color: var(--eto-main-dark-07);
+            color: var(--eto-white);
+        }
+
+        td,
+        th {
+            border-color: var(--eto-main-darkcolor);
+        }
+
+        tfoot {
+            border-top: unset;
+            background-color: var(--eto-main-light-05);
+        }
+
+        &.is-style-stripes {
+
+            td,
+            th {
+                border-color: #0000;
+            }
+
+            tbody tr:nth-child(odd) {
+                background-color: var(--eto-main-light-05);
+            }
+
+            tfoot {
+                border-top: 2px solid var(--eto-main-color);
+            }
+        }
+
+        &.table-scroll-on {
+            table {
+                white-space: nowrap
+            }
+        }
+    }
+
+    .wp-element-caption {
+        color: #8b8b8b;
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+}
+
+blockquote.wp-block-quote {
+    position: relative;
+    margin: 1rem 0;
+    padding: 3.5rem 1.5rem 1.5rem;
+    background-color: var(--eto-main-light-05);
+}
+
+blockquote.wp-block-quote::before {
+    position: absolute;
+    content: "❜❜";
+    font-size: 3rem;
+    color: var(--eto-main-color);
+    top: 0;
+}
+
+blockquote.wp-block-quote cite {
+    font-style: normal;
+    font-size: 0.8rem;
+    color: v.$c-gray;
+}

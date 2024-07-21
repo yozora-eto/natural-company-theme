@@ -1,0 +1,278 @@
+@use "../foundation/variable" as v;
+@use "../foundation/mixin" as m;
+
+/*
+パンくずリスト
+_________________________________________*/
+.l-breadcrumb {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+
+    @include m.mq(pc) {
+        padding-left: v.$padding-center;
+        padding-right: v.$padding-center;
+    }
+
+    &__list {
+        @include m.baseflex(false, false, false, center, 1rem);
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+/*
+postsafter
+_________________________________________*/
+.l-postafter {
+    margin: 2rem 0;
+}
+
+
+/*
+コメント
+_________________________________________*/
+.l-comments {
+    border-bottom: 1px solid var(--eto-bordercolor);
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+
+    &__title {
+        position: relative;
+        display: inline-block;
+        z-index: 1;
+        padding-bottom: 1rem;
+
+        &::after {
+            display: block;
+            position: absolute;
+            content: "";
+            width: 30px;
+            height: 5px;
+            background-color: var(--eto-backcolor-secondary);
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+        }
+    }
+
+    &__subtext {
+        display: inline-block;
+        position: absolute;
+        font-family: v.$f-licorice;
+        color: var(--eto-sub-textcolor);
+        font-size: 1.8rem;
+        top: -20px;
+        left: -15px;
+        transform: rotate(-10deg);
+        z-index: 0;
+    }
+
+    &__h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        z-index: 1;
+    }
+
+    &__list {
+        text-align: start;
+        margin-top: 30px;
+        @include m.basegrid(false, false, false, false, 1rem);
+
+        li {
+            padding: 1.2rem;
+            border: 1px solid var(--eto-main-lightcolor);
+
+            img {
+                width: 30px;
+                border-radius: 50%;
+            }
+        }
+
+        .comment-author.vcard {
+            @include m.baseflex(false, false, false, center, 1rem);
+            padding: 1rem;
+            background-color: var(--eto-main-light-03);
+        }
+
+        span.says {
+            visibility: hidden;
+        }
+
+        .comment-metadata {
+            @include m.baseflex(false, false, space-between, center, false);
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .edit-link {
+            display: inline-block;
+        }
+
+        a.comment-edit-link {
+            display: inline-block;
+            border: 1px solid var(--eto-btn-bordercolor);
+            padding: 2px 10px;
+            border-radius: 5px;
+            color: var(--eto-btn-textcolor);
+            background-color: var(--eto-main-light-05);
+
+            &:hover {
+                color: var(--eto-btn-hover-textcolor);
+                background-color: var(--eto-btn-hover-backcolor);
+            }
+        }
+
+        .comment-content {
+            padding-top: 1rem;
+            border-top: 1px solid var(--eto-main-lightcolor);
+            border-bottom: 1px solid var(--eto-main-lightcolor);
+        }
+
+        .reply {
+            margin-top: 10px;
+        }
+
+        a.comment-reply-link {
+            display: inline-block;
+            line-height: 1;
+            border: 1px solid var(--eto-btn-bordercolor);
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            color: var(--eto-btn-textcolor);
+            background-color: var(--eto-main-light-05);
+
+            &:hover {
+                color: var(--eto-btn-hover-textcolor);
+                background-color: var(--eto-btn-hover-backcolor);
+            }
+        }
+
+        ul.children {
+            margin-top: 10px;
+            @include m.basegrid(false, false, false, false, 1rem);
+        }
+    }
+
+    &__pagelink {
+        margin-top: 1rem;
+        @include m.baseflex(false, false, center, false, 5px);
+
+        a.page-numbers {
+            @include m.baseflex(false, false, center, center, false);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: var(--eto-textcolor);
+
+            @include m.mq(pc) {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+
+            &:hover {
+                background: var(--eto-backcolor);
+                color: var(--eto-link-textcolor);
+            }
+        }
+
+        span.page-numbers.current {
+            @include m.baseflex(false, false, center, center, false);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: var(--eto-link-textcolor);
+            background: var(--eto-backcolor);
+
+            @include m.mq(pc) {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+        }
+
+        .prev.page-numbers,
+        .next.page-numbers {
+            width: unset;
+            width: unset;
+            border-radius: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+
+            @include m.mq(pc) {
+                font-size: 1.2rem;
+                width: unset;
+                width: unset;
+            }
+
+            &:hover {
+                background: var(--eto-backcolor);
+                color: var(--eto-link-textcolor);
+            }
+        }
+    }
+
+    &__required {
+        color: v.$c-rq;
+        padding-left: 5px;
+    }
+
+    &__form {
+        text-align: start;
+        margin-top: 30px;
+        padding: 1.2rem;
+        border: 1px solid var(--eto-main-lightcolor);
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--eto-main-lightcolor);
+            margin-bottom: 1rem;
+
+        }
+
+        .form-submit {
+            margin-top: 1rem;
+            margin-bottom: 0;
+        }
+
+        p.comment-form-cookies-consent {
+            @include m.baseflex(false, false, false, center, 10px);
+        }
+    }
+
+    &__formauthor,
+    &__formemail,
+    &__textarea {
+        margin-bottom: 1rem;
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    }
+
+    &__formauthor,
+    &__formemail {
+        input {
+            width: 100%;
+        }
+    }
+
+    &__textarea {
+        textarea {
+            width: 100%;
+            height: 150px;
+        }
+    }
+}
+
+
+/*　コメントのスパム対策で画像認証を入れている時用　*/
+form#commentform img {
+    width:auto;
+}

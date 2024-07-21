@@ -1,0 +1,210 @@
+@use "../foundation/variable" as v;
+@use "../foundation/mixin" as m;
+
+/*
+header
+_________________________________________*/
+.l-header {
+    @include m.baseflex(false, false, space-between, center, false);
+    padding: 5px 15px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 900;
+    transition: v.$default-trans;
+
+    @include m.mq(pc) {
+        padding: 5px 50px;
+    }
+
+    &.fixed {
+        background-color: var(--eto-backcolor-opacity);
+    }
+
+    &.nofixed {
+        background-color: unset;
+    }
+
+    &__logo {
+        max-width: 180px;
+
+        @include m.mq(pc) {
+            max-width: 277px;
+        }
+    }
+
+    &__nav {
+        position: fixed;
+        top: 0;
+        right: -120%;
+        z-index: 1000;
+        width: 100%;
+        height: 100vh;
+        padding: 50px 20px;
+        transition: v.$default-trans;
+
+        &.panelactive {
+            right: 0;
+            background-color: var(--eto-backcolor-dark);
+        }
+
+        @include m.mq(tab) {
+            width: 80%;
+            box-shadow: -4px 0px 20px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        @include m.mq(pc) {
+            position: static;
+            width: unset;
+            height: auto;
+            display: block;
+            z-index: 0;
+            padding: 0;
+            box-shadow: none;
+        }
+
+    }
+
+    &__menu-item {
+        @include m.baseflex(false, false, false, false, 24px);
+        flex-direction: column;
+
+        a {
+            font-family: v.$f-jost;
+            font-size: 1.5rem;
+            color: var(--eto-back-textcolor);
+
+            &:hover {
+                color: var(--eto-link-textcolor);
+            }
+
+            @include m.mq(pc) {
+                color: var(--eto-textcolor);
+            }
+        }
+
+        @include m.mq(pc) {
+            flex-direction: row;
+        }
+    }
+
+    .menu-item-has-children {
+        position: relative;
+
+        >a {
+            @include m.baseflex(false, false, false, center, 5px);
+
+            &::after {
+                @include m.mq(pc) {
+                    display: inline-block;
+                    position: relative;
+                    font-family: "Material Symbols Outlined";
+                    content: "\e313";
+                    font-size: 1.3rem;
+                    line-height: 1.6;
+                }
+            }
+        }
+    }
+
+    .sub-menu {
+        @include m.baseflex(false, false, false, false, 24px);
+        flex-direction: column;
+        padding: 24px 10px 0px 10px;
+        transition: v.$default-trans;
+
+        @include m.mq(pc) {
+            visibility: hidden;
+            position: absolute;
+            right: 0;
+            opacity: 0;
+            background-color: var(--eto-backcolor-opacity);
+            padding: 24px;
+            width: max-content;
+        }
+
+        li {
+            @include m.mq(pc) {
+                visibility: hidden;
+            }
+        }
+    }
+
+    .menu-item-has-children {
+        &:hover {
+            .sub-menu {
+                visibility: visible;
+                opacity: 1;
+
+                li {
+                    visibility: visible;
+                }
+            }
+        }
+    }
+
+    &__hamburger {
+        display: block;
+        position: relative;
+        top: 0;
+        right: 0;
+        width: 40px;
+        height: 40px;
+        background-color: var(--eto-backcolor-dark);
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 1200;
+
+        @include m.mq(pc) {
+            display: none;
+        }
+
+        span {
+            display: inline-block;
+            transition: v.$default-trans;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 3px;
+            border-radius: 2px;
+            background-color: var(--eto-back-textcolor);
+            width: 45%;
+
+            &:nth-of-type(1) {
+                top: 10px;
+            }
+
+            &:nth-of-type(2) {
+                top: 18px;
+            }
+
+            &:nth-of-type(3) {
+                top: 26px;
+            }
+        }
+
+        &.active {
+            span {
+                &:nth-of-type(1) {
+                    top: 13px;
+                    left: 10px;
+                    transform: translateY(6px) rotate(-45deg);
+                    width: 50%;
+                }
+
+                &:nth-of-type(2) {
+                    opacity: 0;
+                }
+
+                &:nth-of-type(3) {
+                    top: 25px;
+                    left: 10px;
+                    transform: translateY(-6px) rotate(45deg);
+                    width: 50%;
+                }
+            }
+        }
+    }
+}

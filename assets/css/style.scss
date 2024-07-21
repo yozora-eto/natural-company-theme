@@ -1,0 +1,68 @@
+@use "scss/foundation/variable";
+@use "scss/foundation/reset";
+
+/*==================================================
+
+Foundation　part
+
+==================================================*/
+@use "scss/foundation/base";
+
+
+/*==================================================
+
+Layout　part
+
+==================================================*/
+@use "scss/layout/header";
+@use "scss/layout/footer";
+@use "scss/layout/sidebar";
+@use "scss/layout/parts";
+@use "scss/layout/main";
+
+
+/*==================================================
+
+object　part
+
+==================================================*/
+/*--------------------------------------------------
+
+---Component part
+
+--------------------------------------------------*/
+@use "scss/object/component/animation";
+@use "scss/object/component/pagination";
+@use "scss/object/component/button";
+@use "scss/object/component/contactform7";
+@use "scss/object/component/looppost";
+
+
+/*--------------------------------------------------
+
+---Project
+＊WordPress defaultpage part
+
+--------------------------------------------------*/
+@use "scss/object/project/defaul";
+
+
+/*--------------------------------------------------
+
+---Project
+＊Originalpage part
+
+--------------------------------------------------*/
+@use "scss/object/project/notfound";
+@use "scss/object/project/top";
+@use "scss/object/project/service";
+@use "scss/object/project/works";
+@use "scss/object/project/pagelayout";
+
+
+/*--------------------------------------------------
+
+---Utility part
+
+--------------------------------------------------*/
+@use "scss/object/utility/utility";

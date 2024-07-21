@@ -1,0 +1,231 @@
+@use "variable" as v;
+@use "mixin" as m;
+
+/*@forward 'mixin';
+@forward 'variable';*/
+/*
+ページルート
+_________________________________________*/
+:root {
+    @include m.defaultcolorset;
+    @include m.palettecolorset;
+}
+
+/*
+ページベーススタイル
+_________________________________________*/
+body,
+html {
+    font-family: v.$fontfamily;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    display: inline-block;
+    color: var(--eto-link-textcolor);
+    text-decoration: none;
+    transition: v.$default-trans;
+
+    &:hover {
+        color: var(--eto-link-hover-textcolor);
+    }
+}
+
+img {
+    width: 100%;
+    object-fit: cover;
+    vertical-align: bottom;
+}
+
+h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+
+    @include m.mq(pc) {
+        font-size: 1.75rem;
+    }
+}
+
+h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+
+    @include m.mq(pc) {
+        font-size: 1.5rem;
+    }
+}
+
+h4,
+h5 {
+    font-size: 1.2rem;
+    font-weight: 500;
+
+    @include m.mq(pc) {
+        font-size: 1.25rem;
+    }
+}
+
+h6 {
+    font-size: 1.125rem;
+    font-weight: 500;
+}
+
+main {
+    position: relative;
+    z-index: 0;
+}
+
+input[type=text],
+input[type=email],
+input[type=url],
+input[type=tel],
+input[type=number],
+input[type=date],
+textarea {
+    border: 1px solid var(--eto-bordercolor);
+    border-radius: 5px;
+    font-size: 1rem;
+    line-height: 1.6;
+    padding: 8px;
+
+    &::placeholder {
+        color: var(--eto-main-05);
+    }
+
+    &:-ms-input-placeholder {
+        color: var(--eto-main-05);
+    }
+
+    &::-webkit-input-placeholder {
+        color: var(--eto-main-05);
+    }
+
+    &::-moz-placeholder {
+        color: var(--eto-main-05);
+        opacity: 1;
+    }
+}
+
+select {
+    border: 1px solid var(--eto-bordercolor);
+    border-radius: 5px;
+    font-size: 1rem;
+    line-height: 1.6;
+    padding: 8px;
+}
+
+input:focus {
+    outline: 1px solid var(--eto-bordercolor);
+}
+
+textarea:focus {
+    outline: 1px solid var(--eto-bordercolor);
+}
+
+input[type=checkbox] {
+    appearance: none;
+    position: relative;
+    height: 24px;
+    width: 24px;
+    border: 1px solid var(--eto-bordercolor);
+    border-radius: 4px;
+
+    &:checked {
+        border: 1px solid var(--eto-bordercolor);
+        background-color: var(--eto-main-color);
+
+        &::before {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            color: v.$c-white;
+            height: 100%;
+            font-family: "Material Symbols Outlined";
+            font-size: 18px;
+            content: "\e5ca";
+        }
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--eto-main-color);
+        outline-offset: 2px;
+    }
+}
+
+input[type=radio] {
+    appearance: none;
+    position: relative;
+    height: 24px;
+    width: 24px;
+    border: 1px solid var(--eto-bordercolor);
+    border-radius: 50%;
+
+    &:checked {
+        border: 1px solid var(--eto-bordercolor);
+
+        &::before {
+            display: block;
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--eto-main-color);
+            content: "";
+        }
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--eto-main-color);
+        outline-offset: 2px;
+    }
+}
+
+input[type=file] {
+    &::file-selector-button {
+        display: block;
+        border: 1px solid var(--eto-bordercolor);
+        border-radius: 5px;
+        padding: 8px 10px;
+        color: var(--eto-main-color);
+        background-color: var(--eto-main-03);
+        margin-bottom: 15px;
+
+        @include m.mq(tab) {
+            margin-bottom: 0px;
+            margin-right: 15px;
+            display: inline-block;
+        }
+    }
+}
+
+input[type=submit],
+button {
+    display: block;
+    border: 1px solid var(--eto-btn-bordercolor);
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    color: var(--eto-btn-textcolor);
+    background-color: var(--eto-main-light-05);
+    cursor: pointer;
+    transition: v.$default-trans;
+
+    &:hover {
+        color: var(--eto-btn-hover-textcolor);
+        background-color: var(--eto-btn-hover-backcolor);
+    }
+
+    &:disabled {
+        background-color: #f0f0f0;
+        color: v.$c-gray;
+        border-color: v.$c-gray;
+    }
+}

@@ -1,0 +1,25 @@
+@use "../../foundation/variable" as v;
+@use "../../foundation/mixin" as m;
+
+/*
+404ページ
+_________________________________________*/
+.p-404{
+    width: 100%;
+    margin: 50px auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    @include m.mq(pc) {
+        width: v.$main-width;
+        padding-left: 0;
+        padding-right: 0;
+        margin: 80px auto;
+    }
+
+    &__text {
+        text-align: center;
+        font-size: 1.2rem;
+        line-height: 2;
+    }
+}

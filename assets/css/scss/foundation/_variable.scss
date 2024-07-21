@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Licorice&family=Noto+Sans+JP:wght@100..900&display=swap&family=Material+Symbols+Outlined');
+
+$fontfamily: "Noto Sans JP", "Segoe UI", "Helvetica", "游ゴシック", "Yu Gothic", "Meiryo", sans-serif;
+$f-licorice: "Licorice", "Helvetica", sans-serif;
+$f-jost: "Jost", "Helvetica", sans-serif;
+
+$c-base: #252525;
+$c-main: #7B5544;
+$c-main-light: #EDE4E1;
+$c-main-dark: #422F27;
+$c-main-channel:152, 96, 94;
+$c-main-light-channel:237, 228, 225;
+$c-main-dark-channel:66, 47, 39;
+
+$c-rq: #dc143c;
+$c-black: #000;
+$c-white: #fff;
+$c-gray: #999;
+
+$main-width: 1200px;
+$content-width: 1280px;
+$padding-center: calc((100% - 1200px)/2);
+$margin-center: 0 auto;
+
+$default-trans: all 0.3s ease;
