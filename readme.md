@@ -56,6 +56,8 @@ Natural Company テーマは、GPL V2で作成しています。
 
 ■Contact Form 7　：[Contact Form 7](https://contactform7.com/)<br>
 ※プラグイン自体の同梱は行っておりませんが、追加を前提としてテーマ作成を行っております。
+
+■Plugin Update Checker　：[Plugin Update Checker](https://github.com/YahnisElsts/plugin-update-checker)
 <br>
 <br>
 <br>
