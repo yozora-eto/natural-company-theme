@@ -78,18 +78,31 @@ function sub_class()
 function original_mata_ogp()
 {
   if (is_front_page() || is_home() || is_singular()) {
-    //------------ここから基本設定
-    // 画像
-    $ogp_image =  get_template_directory_uri() . '/assets/img/yozora_eto_site_image.png';
-    // Twitterのアカウント名 (@xxx)
-    $twitter_site = '@yozora_eto';
-    // Twitterカードの種類（summary_large_image または summary を指定）
-    $twitter_card = 'summary_large_image';
-    // Facebook APP ID
-    $facebook_app_id = '';
-    //------------ここまで基本設定    
 
     global $post;
+
+    $get_setting = get_option('my_custom');
+
+    if (empty($get_setting['siteimg'])) {
+      $custom_siteimg = esc_url(get_template_directory_uri()) . '/assets/img/noimage.png';
+    } else {
+      $custom_siteimg =  esc_url($get_setting['siteimg']);
+    }
+    $custom_account = esc_html($get_setting['twaccount']);
+    $custom_cardsize = esc_html($get_setting['twcardsize']);
+    $custom_appid = esc_html($get_setting['fbappid']);
+
+    //------------ここから基本設定
+    // 画像
+    $ogp_image =  $custom_siteimg;
+    // X(旧Twitter)のアカウント名 (@xxx)
+    $twitter_site = $custom_account;
+    // X(旧Twitter)カードの種類（summary_large_image または summary を指定）
+    $twitter_card = $custom_cardsize;
+    // Facebook APP ID
+    $facebook_app_id = $custom_appid;
+    //------------ここまで基本設定    
+
     $ogp_title = '';
     $ogp_description = '';
     $ogp_url = '';
@@ -139,15 +152,16 @@ function original_mata_ogp()
 /**
  *  コメント入力順序変更
  */
-function comment_field_order( $fields ) {
+function comment_field_order($fields)
+{
   $original_fields = array(
-          'author'  => $fields['author'],
-          'email'   => $fields['email'],
-          'url'     => $fields['url'],
-          'comment' => $fields['comment'],
-          'cookies' => $fields['cookies'],
+    'author'  => $fields['author'],
+    'email'   => $fields['email'],
+    'url'     => $fields['url'],
+    'comment' => $fields['comment'],
+    'cookies' => $fields['cookies'],
   );
 
   return $original_fields;
 }
-add_filter( 'comment_form_fields', 'comment_field_order' );
+add_filter('comment_form_fields', 'comment_field_order');
