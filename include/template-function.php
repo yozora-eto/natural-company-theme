@@ -119,7 +119,11 @@ add_action('admin_init', function () {
         'toplogo' => '',
         'contacttext' => '教育プログラムのご依頼や、サイトに関するお問い合わせ',
         'bottomlogo' => '',
-        'copyright' => 'Copyright(C) All Rights Reserved.'
+        'copyright' => 'Copyright(C) All Rights Reserved.',
+        'siteimg' => '',
+        'twaccount' => '',
+        'twcardsize' => 'summary_large_image',
+        'fbappid' => '',
     );
 
     if (get_option('my_custom') == false) {
@@ -150,7 +154,7 @@ add_action('admin_init', function () {
         'companyname' => '株式会社サンプル',
         'address' => '〒000-0000　東京都◯◯区◯◯2-55　サンプルビル2階',
         'tel' => '00-0000-0000',
-        'mail'    => 'yozora@mail.com'
+        'mail'    => 'yozora@mail.com',
     );
 
     if (get_option('top_custom') == false) {
@@ -167,10 +171,14 @@ function item_sanitize_my($args)
 
             case 'toplogo':
             case 'bottomlogo':
+            case 'siteimg':
                 $args[$key] = esc_url($value);
                 break;
             case 'contacttext':
             case 'copyright':
+            case 'twaccount':
+            case 'twcardsize':
+            case 'fbappid':
                 $args[$key] = esc_attr($value);
                 break;
 
@@ -307,6 +315,48 @@ function my_custom_menu_page_contents()
                             <p>コピーライトのテキストを入力してください。</p>
                             <p>
                                 <input type="text" name="my_custom[copyright]" value="<?php echo esc_attr(get_option('my_custom')['copyright']); ?>">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="postbox">
+                <div class="postbox-header">
+                    <h2 class="hndle">OGPタグ設定</h2>
+                </div>
+                <div class="inside">
+                    <div class="main">
+                        <p>OGPタグ(SNSシェア用のタグ)についての基本設定を行います。</p>
+                        <div class="admin_mybox">
+                            <h3 class="wp-heading-inline">サイト画像</h3>
+                            <p>トップページや、サムネイルが設定されていないページで表示される画像をURLで指定してください。</p>
+                            <p>
+                                <input type="url" name="my_custom[siteimg]" value="<?php echo esc_attr(get_option('my_custom')['siteimg']); ?>">
+                            </p>
+                        </div>
+                        <div class="admin_mybox">
+                            <h3 class="wp-heading-inline">X(旧Twitter)のアカウント名</h3>
+                            <p>X(旧Twitter)のアカウント名を記入してください。(例：@sample)</p>
+                            <p>
+                                <input type="text" name="my_custom[twaccount]" value="<?php echo esc_attr(get_option('my_custom')['twaccount']); ?>">
+                            </p>
+                        </div>
+                        <div class="admin_mybox">
+                            <h3 class="wp-heading-inline">X(旧Twitter)で表示されるカードサイズ</h3>
+                            <p>X(旧Twitter)で表示させる画像サイズについて、どちらかを選択してください。</p>
+                            <?php $twcardvalue = esc_attr(get_option('my_custom')['twcardsize']); ?>
+                            <p class="admin_mybox_radio">
+                                <input type="radio" name="my_custom[twcardsize]" value="summary_large_image" <?php checked($twcardvalue, 'summary_large_image'); ?>><label>summary_large_image</label>
+                            </p>
+                            <p class="admin_mybox_radio">
+                                <input type="radio" name="my_custom[twcardsize]" value="summary" <?php checked($twcardvalue, 'summary'); ?>><label>summary</label>
+                            </p>
+                        </div>
+                        <div class="admin_mybox">
+                            <h3 class="wp-heading-inline">Facebook APP ID</h3>
+                            <p>Facebook連携をする場合は、APP IDを記入してください。</p>
+                            <p>
+                                <input type="text" name="my_custom[fbappid]" value="<?php echo esc_attr(get_option('my_custom')['fbappid']); ?>">
                             </p>
                         </div>
                     </div>
