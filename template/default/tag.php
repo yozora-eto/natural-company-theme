@@ -15,13 +15,16 @@ if (is_tag()) { // タグページ
 }
 ?>
 <section class="l-headline">
-	<h1 class="l-headline__title">TAG</h1>
+	<div class="l-headline__container">
+		<div class="l-headline__subtext">Tag</div>
+		<h1 class="l-headline__title">ブログタグ</h1>
+	</div>
+	<div class="c-categoryhead">
+		TAG：<?php echo $tag; ?>
+	</div>
 </section>
 <div class="p-archive l-maincontents">
 	<div class="p-archive__maincontainer">
-	<div class="c-categoryhead">
-			TAG：<?php echo $tag; ?>
-		</div>
 		<?php if (have_posts()) : ?>
 			<div class="c-loop__box">
 				<?php while (have_posts()) : the_post(); ?>
