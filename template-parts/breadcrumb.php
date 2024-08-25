@@ -14,7 +14,16 @@ if ( !defined( 'ABSPATH' ) ) exit;
             <meta itemprop="position" content="1">
         </li>
         <span class="l-breadcrumb__conect"> - </span>
-        <?php if (is_page() && $post->post_parent) { ?>
+        <?php if (is_home()) {
+            $hometitle = 'ブログ';
+        ?>
+            <li class="l-breadcrumb__listitem" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="<?php echo esc_url(get_post_type_archive_link('post')); ?>" class="l-breadcrumb__link">
+                    <span itemprop="name"><?php echo $hometitle; ?></span>
+                </a>
+                <meta itemprop="position" content="2">
+            </li>
+        <?php } elseif (is_page() && $post->post_parent) { ?>
             <li class="l-breadcrumb__listitem" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
                 <a itemprop="item" href="<?php echo esc_url(get_page_link($post->post_parent)); ?>" class="l-breadcrumb__link">
                     <span itemprop="name"><?php echo get_the_title($post->post_parent); ?></span>
@@ -109,24 +118,21 @@ if ( !defined( 'ABSPATH' ) ) exit;
                 </a>
                 <meta itemprop="position" content="2">
             </li>
-        <?php } elseif (is_archive()) {
-            $post_type = get_query_var('post_type');
-            if ($post_type == 'post') {
-                $post_type_name = 'ブログ';
-                $post_type_link = esc_url(home_url('/')) . 'blog/';
-            } else {
-                $post_type_name = esc_html(get_post_type_object(get_post_type())->label);
-                $post_type_link = esc_url(get_post_type_archive_link(get_post_type()));
-            }
-        ?>
+        <?php } elseif (is_category()) {
+            $post_type_name = 'ブログ';
+            $post_type_link = esc_url(home_url('/')) . 'blog/'; ?>
             <li class="l-breadcrumb__listitem" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
                 <a itemprop="item" href="<?php echo $post_type_link; ?>" class="l-breadcrumb__link">
                     <span itemprop="name">ブログ</span>
                 </a>
                 <meta itemprop="position" content="2">
             </li>
-            <?php if (is_category()) {
-                $cat = get_the_category();
+            <?php
+            $args = array(
+                'hide_empty' => '0',
+            );
+            $cat = get_the_category($args);
+            if (isset($cat, $cat[0])) {
                 $cat = $cat[0];
                 $category_id = get_query_var('cat');
                 $category_name = single_cat_title('', false);
@@ -160,21 +166,45 @@ if ( !defined( 'ABSPATH' ) ) exit;
                         </a>
                         <meta itemprop="position" content="3">
                     </li>
-                <?php }
-            } elseif (is_tag()) {
-                $tag_id = get_query_var('tag');
-                $tag_name = single_tag_title('', false);
-                $tag_link = esc_url(get_tag_link($tag_id));
-                ?>
-                <span class="l-breadcrumb__conect"> - </span>
-                <li class="l-breadcrumb__listitem" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                    <a itemprop="item" href="<?php echo $tag_link; ?>" class="l-breadcrumb__link">
-                        <span itemprop="name"><?php echo $tag_name; ?></span>
-                    </a>
-                    <meta itemprop="position" content="3">
-                </li>
             <?php }
-        } elseif (is_single()) {
+            }
+        } elseif (is_tag()) {
+            $post_type_name = 'ブログ';
+            $post_type_link = esc_url(home_url('/')) . 'blog/';
+            $tag_id = get_query_var('tag');
+            $tag_name = single_tag_title('', false);
+            $tag_link = esc_url(get_tag_link($tag_id));
+            ?>
+            <li class="l-breadcrumb__listitem" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="<?php echo $post_type_link; ?>" class="l-breadcrumb__link">
+                    <span itemprop="name">ブログ</span>
+                </a>
+                <meta itemprop="position" content="2">
+            </li>
+            <span class="l-breadcrumb__conect"> - </span>
+            <li class="l-breadcrumb__listitem" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="<?php echo $tag_link; ?>" class="l-breadcrumb__link">
+                    <span itemprop="name"><?php echo $tag_name; ?></span>
+                </a>
+                <meta itemprop="position" content="3">
+            </li>
+        <?php } elseif (is_archive()) {
+            $post_type = get_query_var('post_type');
+            if ($post_type == 'post') {
+                $post_type_name = 'ブログ';
+                $post_type_link = esc_url(home_url('/')) . 'blog/';
+            } else {
+                $post_type_name = esc_html(post_type_archive_title());
+                $post_type_link = esc_url(get_post_type_archive_link(get_post_type()));
+            }
+        ?>
+            <li class="l-breadcrumb__listitem" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="<?php echo $post_type_link; ?>" class="l-breadcrumb__link">
+                    <span itemprop="name">ブログ</span>
+                </a>
+                <meta itemprop="position" content="2">
+            </li>
+        <?php } elseif (is_single()) {
             $post_type = get_post_type();
             if ($post_type == 'post') {
                 $post_type_name = 'ブログ';
@@ -183,7 +213,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
                 $post_type_name = esc_html(get_post_type_object(get_post_type())->label);
                 $post_type_link = esc_url(get_post_type_archive_link(get_post_type()));
             }
-            ?>
+        ?>
             <li class="l-breadcrumb__listitem" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
                 <a itemprop="item" href="<?php echo $post_type_link; ?>" class="l-breadcrumb__link">
                     <span itemprop="name"><?php echo $post_type_name; ?></span>
