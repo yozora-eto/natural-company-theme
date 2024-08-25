@@ -10,14 +10,14 @@ if (!defined('ABSPATH')) exit;
 $get_customs = get_option('top_custom');
 
 if (empty($get_customs['mvimg'])) {
-    $top_custom_mvimg = esc_url(get_template_directory_uri()) . '/assets/img/noimage.png';
+    $top_custom_mvimg = esc_url(get_theme_file_uri()) . '/assets/img/noimage.png';
 } else {
     $top_custom_mvimg = esc_html($get_customs['mvimg']);
 }
 $top_custom_catch = nl2br(esc_html($get_customs['catch']));
 $top_custom_subtitle = esc_html($get_customs['subtitle']);
 if (empty($get_customs['aboutimg'])) {
-    $top_custom_aboutimg = esc_url(get_template_directory_uri()) . '/assets/img/noimage.png';
+    $top_custom_aboutimg = esc_url(get_theme_file_uri()) . '/assets/img/noimage.png';
 } else {
     $top_custom_aboutimg = esc_url($get_customs['aboutimg']);
 }
@@ -91,7 +91,7 @@ get_template_part('template-parts/site-header');
                             $thumbAlt_service = get_post_meta($thumbID_service, '_wp_attachment_image_alt', true); ?>
                             <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php echo $thumbAlt_service; ?>" class="p-top-service__itemimg" loading="lazy">
                         <?php else : ?>
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/noimage.png" alt="no image" class="p-top-service__itemimg" loading="lazy">
+                            <img src="<?php echo esc_url(get_theme_file_uri()); ?>/assets/img/noimage.png" alt="no image" class="p-top-service__itemimg" loading="lazy">
                         <?php endif; ?>
                         <h3 class="p-top-service__h3"><?php the_title(); ?></h3>
                     </a>
@@ -147,7 +147,7 @@ get_template_part('template-parts/site-header');
                                 $thumbAlt_work = get_post_meta($thumbID_work, '_wp_attachment_image_alt', true); ?>
                                 <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php echo $thumbAlt_work; ?>" class="p-top-work__img" loading="lazy">
                             <?php else : ?>
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/noimage.png" alt="no image" class="p-top-work__img" loading="lazy">
+                                <img src="<?php echo esc_url(get_theme_file_uri()); ?>/assets/img/noimage.png" alt="no image" class="p-top-work__img" loading="lazy">
                             <?php endif; ?>
                         </div>
                     </li>

@@ -9,7 +9,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 $get_mycustoms = get_option('my_custom');
 
 if (empty($get_mycustoms['toplogo'])) {
-  $my_custom_toplogo =  esc_url(get_template_directory_uri()) . '/assets/img/sample-logo-black.png';
+  $my_custom_toplogo =  esc_url(get_theme_file_uri()) . '/assets/img/sample-logo-black.png';
 } else {
   $my_custom_toplogo = esc_html($get_mycustoms['toplogo']);
 }

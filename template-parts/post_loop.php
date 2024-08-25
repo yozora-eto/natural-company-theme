@@ -23,7 +23,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
                 $thumbAlt = get_post_meta($thumbID, '_wp_attachment_image_alt', true); ?>
                 <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php echo $thumbAlt ?>" class="c-postloop__img" loading="lazy">
             <?php else : ?>
-                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/noimage.png" alt="no image" class="c-postloop__img" loading="lazy">
+                <img src="<?php echo esc_url(get_theme_file_uri()); ?>/assets/img/noimage.png" alt="no image" class="c-postloop__img" loading="lazy">
             <?php endif; ?>
         </a>
         <div class="c-postloop__contentbox">

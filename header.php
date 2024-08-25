@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) exit;
 
 $title = get_the_title();
 $description = mb_substr(str_replace("\r\n", '', get_the_excerpt()), 0, 120);
-$icon_url = get_site_icon_url(512, esc_url(get_template_directory_uri()) . '/assets/img/favicon.png');
+$icon_url = get_site_icon_url(512, esc_url(get_theme_file_uri()) . '/assets/img/favicon.png');
 
 if (is_category()) { // カテゴリーページ
   $title = single_cat_title('', false);
@@ -51,10 +51,14 @@ if (is_category()) { // カテゴリーページ
   <?php } ?>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <?php wp_head();
-  original_mata_ogp(); ?>
+  if (function_exists('original_mata_ogp')) {
+  original_mata_ogp();
+  } ?>
   <link rel="shortcut icon" href="<?php echo $icon_url; ?>">
 </head>
 
 <body <?php body_class(); ?>>
   <div class="c-animation-bg"></div>
-  <div <?php sub_body_id(); ?> class="l-container">
+  <div <?php   if (function_exists('sub_body_id')) {
+    sub_body_id();
+    } ?> class="l-container">

@@ -47,7 +47,7 @@ $custom_workpostlink = esc_html($get_customs['workpostlink']);
                                 $thumbAlt_work = get_post_meta($thumbID_work, '_wp_attachment_image_alt', true); ?>
                                 <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php echo $thumbAlt_work; ?>" class="p-workarchive__img" loading="lazy">
                             <?php else : ?>
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/noimage.png" alt="no image" class="p-workarchive__img" loading="lazy">
+                                <img src="<?php echo esc_url(get_theme_file_uri()); ?>/assets/img/noimage.png" alt="no image" class="p-workarchive__img" loading="lazy">
                             <?php endif; ?>
                         </div>
                     </li>
